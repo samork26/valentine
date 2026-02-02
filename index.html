@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veneeza</title>
+    <title>Valentine?</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
@@ -95,6 +95,8 @@
         .no-btn {
             border-color: #ccc;
             color: #aaa;
+            transition: none;
+            z-index: 1000;
         }
 
         .celebration {
@@ -106,19 +108,12 @@
             font-style: italic;
             font-weight: 300;
             color: #c9a89a;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        .heart {
-            font-size: 1.5rem;
-            display: inline-block;
-            animation: gentle-pulse 2s ease-in-out infinite;
-            color: #c9a89a;
-        }
-
-        @keyframes gentle-pulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
+        .dancing-cat {
+            width: 150px;
+            margin: 0 auto 20px;
         }
 
         .petal {
@@ -152,7 +147,7 @@
 <body>
     <div class="container">
         <div class="photo-container">
-            <img src="photo.jpg" alt="" onerror="this.parentElement.style.display='none'">
+            <img src="cute-cat.jpg" alt="" onerror="this.parentElement.style.display='none'">
         </div>
 
         <h1>Veneeza</h1>
@@ -164,29 +159,35 @@
         </div>
 
         <div class="celebration" id="celebration">
+            <div class="dancing-cat">
+                <div class="tenor-gif-embed" data-postid="9145444069478429394" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/cat-gif-9145444069478429394">Cat Sticker</a>from <a href="https://tenor.com/search/cat-stickers">Cat Stickers</a></div>
+            </div>
             <p>i love you</p>
-            <span class="heart">♥</span>
         </div>
     </div>
 
+    <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
     <script>
         function moveButton() {
             const btn = document.getElementById('noBtn');
-            const buttons = document.getElementById('buttons');
 
-            const maxX = buttons.offsetWidth - btn.offsetWidth;
-            const maxY = 100;
+            const padding = 20;
+            const maxX = window.innerWidth - btn.offsetWidth - padding;
+            const maxY = window.innerHeight - btn.offsetHeight - padding;
 
-            const randomX = Math.random() * maxX;
-            const randomY = Math.random() * maxY - 20;
+            const randomX = padding + Math.random() * maxX;
+            const randomY = padding + Math.random() * maxY;
+            const randomRotate = (Math.random() - 0.5) * 30;
 
-            btn.style.position = 'absolute';
+            btn.style.position = 'fixed';
             btn.style.left = randomX + 'px';
             btn.style.top = randomY + 'px';
+            btn.style.transform = `rotate(${randomRotate}deg)`;
         }
 
         function sayYes() {
             document.getElementById('buttons').style.display = 'none';
+            document.getElementById('noBtn').style.display = 'none';
             document.getElementById('celebration').style.display = 'block';
             createPetals();
         }
